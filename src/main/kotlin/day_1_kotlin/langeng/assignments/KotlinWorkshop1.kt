@@ -33,8 +33,8 @@ object KotlinWorkshop1 {
         // TODO 1: Uncomment.
         //  Assign "nullableElvisString" to the "notNullUserString" and fix the assignment with elvis operator.
         //  If "nullableElvisString" is null, "notNullUserString" should be equal to "emptyString".
-//        var notNullUserString: String =
-//        println("Result string is empty $notNullUserString")
+        var notNullUserString: String = nullableElvisString ?: emptyString
+        println("Result string is empty $notNullUserString")
 
         // TODO 2: Uncomment.
         //  We know that "nullableString" is non-null by fact. Reassign value from "nullableAssertionString" using !! operator.
