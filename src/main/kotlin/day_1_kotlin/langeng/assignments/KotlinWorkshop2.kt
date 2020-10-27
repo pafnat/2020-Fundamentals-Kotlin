@@ -44,8 +44,13 @@ object KotlinWorkshop2 {
             // Storing user input in userInput variable
             // While running the program. Look at the console. Click inside the console window. Input a number.
             val userInput: Int = scanner.nextInt()
-            if (true) {
-
+            if (userInput == randomNumber) {
+                println("Congratulations")
+                break
+            } else if (userInput < randomNumber) {
+                println("Your Guess is Lower")
+            } else if (userInput > randomNumber) {
+                println("Your Guess is Higher")
             }
         }
 
@@ -55,14 +60,18 @@ object KotlinWorkshop2 {
 
         // TODO 2: Uncomment. Initialize "numbersArray".
         //  It should be an array of Int with capacity = 5.
-//        val numbersArray =
+        val numbersArray = arrayOf(0,0,0,0,0)
+        println("\nGiven numbersArray:")
+        for ((index, number) in numbersArray.withIndex()){
+            println("$index $number")
+        }
 
         // TODO 3: Uncomment. Initialize "size".
         //  Change infinite while-loop condition. Limit user input with a size of "numbersArray".
         println("\nTraining 2. \"Fill in the collection\"")
-//        val size =
+        val size = numbersArray.size
         var counter = 0
-        while (true) {
+        while (counter < size) {
             print("Input a number in range 0..10 inclusive: ")
             val userInput: Int = scanner.nextInt()
 
@@ -72,8 +81,11 @@ object KotlinWorkshop2 {
             //  if userInput is 9 - add 2 + size of numbersArray.
             //  else don't add anything.
             //  Use "When" operator.
-            when {
-
+            when (userInput) {
+                3 -> numbersArray.set(counter, userInput)
+                5 -> numbersArray.set(counter, userInput * size)
+                9 -> numbersArray.set(counter, 2 + size)
+                else -> { /* ignored */ }
             }
 
             counter++
@@ -81,6 +93,9 @@ object KotlinWorkshop2 {
 
         // TODO 5: Print line by line elements of numbersArray with their indexes.
         //  Should looks like "index value".
+        for ((index, number) in numbersArray.withIndex()){
+            println("$index $number")
+        }
 
     }
 
