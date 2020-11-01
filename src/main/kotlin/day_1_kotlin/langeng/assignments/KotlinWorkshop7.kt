@@ -26,21 +26,20 @@ object KotlinWorkshop7 {
         // TODO 1: Print the "poem" for 2 cases:
         //  1. Filter and print lines shorter than 12 symbols;
         //  2. Print poem reversed.
-        /*
-        val filtered = ...
-        val reversed = ...
+
+        val filtered = sadPoem.filter { it.length < 12 }
+        val reversed = sadPoem.reversed()
         println(filtered)
         println(reversed)
-        * */
+
 
         // TODO 2: Uncomment.
         //  Initialize an evenList variable and add to it only "even" numbers from 0 to 50.
-        /*
-        val evenList = ...
+        val evenList = mutableListOf<Int>()
         for (i in 0..50) {
+            if (i % 2 == 0) evenList.add(i)
         }
         println(evenList)
-        */
 
 
 
@@ -57,10 +56,13 @@ object KotlinWorkshop7 {
         /* Exercise bonus area */
 
         // TODO 3. Add a weather for Kiev and Tel-Aviv to weatherMap.
-//        weatherMap... =
+        weatherMap["Kiev"] = 6
+        weatherMap["Tel-Aviv"] = 30
 
         // TODO 4. Filter and print cities with temperature of zero+.
         //  Connect operators as a chain.
-//        weatherMap
+        weatherMap.filter { it.value > 0 }.forEach{
+           println("City ${it.key} has temperature of ${it.value}")
+        }
     }
 }
