@@ -26,15 +26,57 @@ class Bicycle: Transport(1) {
 // TODO 1: Create a new interface that will be appropriate for new classes below.
 // ? By convention, names of Classes and Interfaces start with an upper case letter and use the camel case.
 // Example: "SomeLongClassName".
-//interface ...
+interface Storable {
+    fun isFull(): Boolean
+    fun takePlace()
+}
 
 // TODO 2: Write your own class Bus and some Car.
 //  Instead of writing it from scratch, extend it from the Transport class and your new interface.
 // ? Class can extends only one other class, but implements many interfaces, i.e.:
-// class Kitty(): Cat, Cuteable, Sleepable, Furryable {}
+//class Kitty(): Cat, Cuteable, Sleepable, Furryable {}
 
-//class Bus ...
-//class Car ...
+class Bus(passengersCount: Int): Transport(passengersCount), Storable {
+
+    private var hasNoSeats: Boolean = false
+
+    override fun drive() {
+        if (isFull()) {
+            println("Driving Bus without free seats")
+        } else {
+            println("There are free seats in the bus")
+        }
+    }
+
+    override fun isFull(): Boolean  = hasNoSeats
+
+    override fun takePlace() {
+        hasNoSeats = true
+        println("Take all free seats with passengers...")
+    }
+
+}
+
+class Car(passengersCount: Int): Transport(passengersCount), Storable {
+
+    private var hasNoSeats: Boolean = false
+
+    override fun drive() {
+        if (isFull()) {
+            println("Driving Car without free seats")
+        } else {
+            println("There are free seats in the car")
+        }
+    }
+
+    override fun isFull(): Boolean  = hasNoSeats
+
+    override fun takePlace() {
+        hasNoSeats = true
+        println("Take all free seats with passengers...")
+    }
+
+}
 
 // TODO 3: Test your transport in appropriate sections
 object VehiclesTest {
@@ -45,22 +87,30 @@ object VehiclesTest {
         testBus()
         testCar()
         testBicycle()
+        testBusParts()
     }
 
     private fun testBus() {
         println("Testing how bus drives...")
-//        val bus = ...
+        val bus = Bus(10)
+        bus.drive()
+        bus.takePlace()
+        bus.drive()
     }
 
     private fun testCar() {
         println("Testing how car drives...")
-//        val car = ...
+        val car = Car(4)
+        car.drive()
+        car.takePlace()
+        car.drive()
     }
 
     private fun testBicycle() {
         println("Testing how bicycle drives...")
-//        ...
-    }
+        val bicycle = Bicycle()
+        bicycle.drive()
+            }
 
 
 
@@ -68,10 +118,17 @@ object VehiclesTest {
 
     // TODO 4: Test bus abilities as separate features.
     private fun testBusParts() {
-        println("Testing bus's feature 1...")
 
+        val bus = Bus(0)
+        val engine: Driveable = bus
+        println("Testing bus engine:")
+        println(engine.drive())
 
-        println("Testing bus's feature 2...")
+        val space: Storable = bus
+        println("Testing bus free space:")
+        println("has no space: ${space.isFull()}")
+        println(space.takePlace())
+        println("has no space: ${space.isFull()}")
 
     }
 }
